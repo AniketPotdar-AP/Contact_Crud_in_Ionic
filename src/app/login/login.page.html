@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="spContainer mx-auto">
+
+      <div class="card px-4 py-4 border-0 shadow">
+        <div class="d-inline text-left mb-4">
+          <div class="alert alert-danger text-center" role="alert" *ngIf="error">
+            {{error}}
+          </div>
+          <h3 class="font-weight-bold text-center">Login</h3>
+        </div>
+        <form [formGroup]="loginForm">
+          <div class="d-inline">
+            <div class="form-group mx-auto">
+              <ion-input label="Enter your Email*" class="mb-3" formControlName="email" label-placement="floating"
+                fill="outline" placeholder="abc@example.com"></ion-input>
+            </div>
+          </div>
+          <div *ngIf="
+          (f['email']['touched'] || f['email']['dirty']) && f['email'].errors
+        " class="error">
+            <small *ngIf="f['email'].errors['required']">Email is Required!</small>
+            <small *ngIf="f['email'].errors['email']">Email is Invalid</small>
+          </div>
+
+          <div class="d-inline">
+            <div class="form-group mx-auto">
+              <ion-input label="Enter your Password*" class="mb-3" formControlName="password" label-placement="floating"
+                fill="outline" placeholder="************"></ion-input>
+            </div>
+          </div>
+          <div *ngIf="
+          (f['password']['touched'] || f['password']['dirty']) &&
+          f['password'].errors
+        " class="error">
+            <small *ngIf="f['password'].errors['required']">Password is Required!</small>
+          </div>
+          <div class="text-left mb-3">
+            <div class="form-group">
+
+              <ion-button expand="block" [disabled]="!loginForm.valid" (click)="onSubmit()">
+                <ion-spinner name="circles" *ngIf="success"></ion-spinner>
+                <div *ngIf="!success">Login</div>
+              </ion-button>
+            </div>
+
+            <br /><br />
+            <p>
+              Demo : <br /><br />
+              Email : user@gmail.com<br />Password : User@123
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

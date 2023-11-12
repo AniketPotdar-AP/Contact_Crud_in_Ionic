@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: 'https://nice-puce-seal-hem.cyclic.app',
 };

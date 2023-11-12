@@ -1,0 +1,70 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary ">
+    <ion-button slot="start" fill="clear" color="light" [routerLink]="['/home']">
+      <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+    </ion-button>
+    <ion-title class="text-center me-5">Create Contact</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div class="container">
+  <div class="row">
+    <div class="spContainer mx-auto">
+      <div class="card px-4 py-4 border-0 shadow">
+        <div class="d-inline text-left mb-4">
+          <h3 class="font-weight-bold text-center">Create Contact</h3>
+        </div>
+        <form [formGroup]="contactForm">
+          <div class="d-inline">
+            <div class="form-group mx-auto">
+              <ion-input label="Enter your First Name*" class="mb-3" label-placement="floating" fill="outline"
+                placeholder="abc@example.com" formControlName="firstName"></ion-input>
+            </div>
+          </div>
+
+          <div *ngIf="
+          (f['firstName']['touched'] || f['firstName']['dirty']) && f['firstName'].errors
+        " class="error">
+            <small *ngIf="f['firstName'].errors['required']">First Name is Required!</small>
+          </div>
+
+          <div class="d-inline">
+            <div class="form-group mx-auto">
+              <ion-input label="Enter your Last Name*" class="mb-3" label-placement="floating" fill="outline"
+                placeholder="************" formControlName="lastName"></ion-input>
+            </div>
+          </div>
+
+          <div *ngIf="
+          (f['lastName']['touched'] || f['lastName']['dirty']) &&
+          f['lastName'].errors
+        " class="error">
+            <small *ngIf="f['lastName'].errors['required']">Last Name is Required!</small>
+          </div>
+
+          <div class="d-inline">
+            <div class="form-group mx-auto">
+              <ion-input type="number" label="Enter your Phone No*" class="mb-3" label-placement="floating"
+                fill="outline" formControlName="phoneNo"></ion-input>
+            </div>
+          </div>
+
+          <div *ngIf="
+          (f['phoneNo']['touched'] || f['phoneNo']['dirty']) &&
+          f['phoneNo'].errors
+        " class="error">
+            <small *ngIf="f['phoneNo'].errors['required']">Phone No is Required!</small>
+          </div>
+
+          <div class="text-left mb-3">
+            <div class="form-group">
+              <ion-button expand="block" [disabled]="!contactForm.valid" (click)="createContact()">
+                <div>Create Contact</div>
+              </ion-button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

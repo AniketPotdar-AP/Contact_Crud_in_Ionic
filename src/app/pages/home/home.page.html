@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary ">
+    <ion-title>Contacts</ion-title>
+    <ion-button slot="secondary" fill="clear" color="light" (click)="logoutApp()">
+      <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+  <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)" (ionRefresh)="getContacts()">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <div class="container">
+      <h2 class="mx-2 d-flex justify-content-between pb-2 align-items-center border-bottom border-3">
+        <div class="d-flex">My Contacts</div>
+        <ion-button fill="clear" [routerLink]="['/create-contact']">
+          <ion-icon slot="icon-only" name="person-add-outline"></ion-icon>
+        </ion-button>
+      </h2>
+
+      <ion-searchbar [(ngModel)]="searchQuery" (keyup)="performSearch()"></ion-searchbar>
+      <ng-container *ngFor="let contacts of contact">
+        <ion-card class="p-3" *ngIf="!searchText">
+          <ion-card-header>
+            <ion-card-title>First Name : {{ contacts.firstName }}</ion-card-title>
+            <ion-card-title>Last Name : {{ contacts.lastName }}</ion-card-title>
+            <ion-card-title>Phone No : {{ contacts.phoneNo }}</ion-card-title>
+          </ion-card-header>
+          <ion-button [routerLink]="['../contact-details/' + contacts?._id]" color="warning">Edit</ion-button>
+          <ion-button color="danger" (click)="presentAlert(contacts?._id)">Delete</ion-button>
+        </ion-card>
+      </ng-container>
+
+      <ng-container *ngFor="let item of filteredData">
+        <ion-card class="p-3" *ngIf="searchText">
+          <ion-card-header>
+            <ion-card-title>First Name : {{ item.firstName }}</ion-card-title>
+            <ion-card-title>Last Name : {{ item.lastName }}</ion-card-title>
+            <ion-card-title>Phone No : {{ item.phoneNo }}</ion-card-title>
+          </ion-card-header>
+          <ion-button [routerLink]="['../contact-details/' + item?._id]" color="warning">Edit</ion-button>
+          <ion-button color="danger">Delete</ion-button>
+        </ion-card>
+      </ng-container>
+
+    </div>
+  </ion-content>
+</ion-header>

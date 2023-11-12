@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.error {
+  margin-top: -16px;
+  margin-left: 6px;
+  padding-bottom: 7%;
+  color: red;
+
+}
